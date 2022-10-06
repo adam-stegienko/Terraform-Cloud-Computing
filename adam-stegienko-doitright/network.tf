@@ -24,7 +24,6 @@ resource "aws_route_table" "adam-rtb" {
 }
 
 resource "aws_route_table_association" "adam_association" {
-  depends_on = [aws_subnet.adam-terra-sub]
   count      = length(var.cidr)
 
   subnet_id      = element(aws_subnet.adam-terra-sub.*.id, count.index)

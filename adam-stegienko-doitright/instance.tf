@@ -1,6 +1,6 @@
 resource "aws_instance" "web_server" {
   count      = length(var.cidr)
-  depends_on = [aws_subnet.adam-terra-sub, aws_internet_gateway.adam-igw]
+  depends_on = [aws_internet_gateway.adam-igw]
 
   ami                    = var.custom_ami
   instance_type          = var.instance_size

@@ -1,6 +1,4 @@
 resource "aws_security_group" "adam-sg" {
-  depends_on = [aws_vpc.adam-vpc]
-
   name        = "adam-server-sg"
   description = "Security Group for Adam Server"
   vpc_id      = aws_vpc.adam-vpc.id

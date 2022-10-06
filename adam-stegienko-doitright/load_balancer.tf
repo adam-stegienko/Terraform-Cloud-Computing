@@ -15,8 +15,6 @@ resource "aws_lb_target_group" "adam-target" {
 }
 
 resource "aws_lb" "adam-lb" {
-  depends_on = [aws_subnet.adam-terra-sub]
-
   name               = "adam-lb"
   internal           = false
   load_balancer_type = "application"
@@ -38,7 +36,6 @@ resource "aws_lb_listener" "adam-listener" {
 
 resource "aws_lb_target_group_attachment" "adam-lb-attach" {
   count      = length(var.cidr)
-  depends_on = [aws_instance.web_server]
 
   target_group_arn = aws_lb_target_group.adam-target.arn
   target_id        = element(aws_instance.web_server.*.id, count.index)
