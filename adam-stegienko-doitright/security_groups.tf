@@ -1,29 +1,30 @@
 resource "aws_security_group" "adam-sg" {
-  name        = "adam-server-sg"
-  description = "Security Group for Adam Server"
+  name        = var.lb_security_group["name"]
+  description = var.lb_security_group["description"]
   vpc_id      = aws_vpc.adam-vpc.id
 
   ingress {
-    description = "Inbound connection"
-    from_port   = var.def_port
-    to_port     = var.def_port
-    protocol    = var.protocols[1]
-    cidr_blocks = [var.ipv4_range[1]]
+    description = var.ingress_one["description"]
+    from_port   = var.ingress_one["from_port"]
+    to_port     = var.ingress_one["to_port"]
+    protocol    = var.ingress_one["protocol"]
+    cidr_blocks = [var.ingress_one["cidr_blocks"]]
   }
 
   ingress {
-    description = "Inbound connection"
-    from_port   = 22
-    to_port     = 22
-    protocol    = var.protocols[1]
-    cidr_blocks = [var.ipv4_range[1]]
+    description = var.ingress_two["description"]
+    from_port   = var.ingress_two["from_port"]
+    to_port     = var.ingress_two["to_port"]
+    protocol    = var.ingress_two["protocol"]
+    cidr_blocks = [var.ingress_two["cidr_blocks"]]
   }
 
   egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = [var.ipv4_range[1]]
-    ipv6_cidr_blocks = ["::/0"]
+    description      = var.egress_all["description"]
+    from_port        = var.egress_all["from_port"]
+    to_port          = var.egress_all["to_port"]
+    protocol         = var.egress_all["protocol"]
+    cidr_blocks      = [var.egress_all["cidr_blocks"]]
+    ipv6_cidr_blocks = [var.egress_all["ipv6_cidr_blocks"]]
   }
 }
