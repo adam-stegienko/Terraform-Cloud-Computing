@@ -3,10 +3,11 @@ resource "aws_vpc" "adam-vpc" {
 }
 
 resource "aws_subnet" "adam-terra-sub" {
+  count = length(var.cidr)
+
   vpc_id            = aws_vpc.adam-vpc.id
   cidr_block        = element(var.cidr, count.index)
   availability_zone = element(var.availability_zones, count.index)
-  count             = length(var.cidr)
 }
 
 resource "aws_internet_gateway" "adam-igw" {
@@ -23,9 +24,9 @@ resource "aws_route_table" "adam-rtb" {
 }
 
 resource "aws_route_table_association" "adam_association" {
+  depends_on = [aws_subnet.adam-terra-sub]
+  count      = length(var.cidr)
+
   subnet_id      = element(aws_subnet.adam-terra-sub.*.id, count.index)
   route_table_id = aws_route_table.adam-rtb.id
-  depends_on     = [aws_subnet.adam-terra-sub]
-  count          = length(var.cidr)
-
 }
