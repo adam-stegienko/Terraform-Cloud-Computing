@@ -2,7 +2,7 @@ resource "aws_lb_target_group" "adam-target" {
   name     = var.alb_target["name"]
   port     = var.alb_target["port"]
   protocol = var.alb_target["protocol"]
-  vpc_id   = aws_vpc.adam-vpc.id
+  vpc_id   = data.aws_vpc.adam-vpc.id
 
   health_check {
     port     = var.health_check["port"]
@@ -21,8 +21,8 @@ resource "aws_lb" "adam-lb" {
   internal           = var.alb_balancer["internal"]
   load_balancer_type = var.alb_balancer["load_balancer_type"]
   ip_address_type    = var.alb_balancer["ip_address_type"]
-  security_groups    = [aws_security_group.adam-sg.id]
-  subnets            = aws_subnet.adam-terra-sub[*].id
+  security_groups    = [data.aws_security_group.adam-sg.id]
+  subnets            = data.aws_subnet.adam-terra-sub[*].id
 }
 
 resource "aws_lb_listener" "adam-listener" {
