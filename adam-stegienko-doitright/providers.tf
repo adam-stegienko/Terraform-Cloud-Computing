@@ -6,7 +6,7 @@ terraform {
   }
   backend "s3" {
     bucket = "adam-stegienko-s3"
-    key    = "./dev/terraform.tfstate"
+    key    = "./terraform.tfstate"
     region = "eu-central-1"
   }
 }

@@ -11,5 +11,5 @@ output "aws_vpc" {
 }
 
 output "aws_subnet" {
-  value = aws_subnet.adam-terra-sub
+  value = tolist(aws_subnet.adam-terra-sub[*])
 }

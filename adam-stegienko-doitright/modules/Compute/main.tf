@@ -11,4 +11,6 @@ data "aws_internet_gateway" "adam-igw" {
 }
   
 data "aws_subnet" "adam-terra-sub" {
+  count = var.no_of_subnets
+  id = element(var.aws_subnet.*.id, count.index)
 }
