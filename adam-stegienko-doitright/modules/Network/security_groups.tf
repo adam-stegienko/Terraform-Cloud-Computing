@@ -3,6 +3,8 @@ resource "aws_security_group" "adam-sg" {
   description = var.lb_security_group["description"]
   vpc_id      = aws_vpc.adam-vpc.id
 
+  tags = var.adam_tags
+
   ingress {
     description = var.ingress_one["description"]
     from_port   = var.ingress_one["from_port"]
