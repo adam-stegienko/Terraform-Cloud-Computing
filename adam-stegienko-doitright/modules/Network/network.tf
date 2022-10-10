@@ -7,9 +7,9 @@ resource "aws_vpc" "adam-vpc" {
 resource "aws_subnet" "adam-terra-sub" {
   count = var.no_of_subnets
 
-  vpc_id            = aws_vpc.adam-vpc.id
-  cidr_block        = element(var.cidr_block, count.index)
-  availability_zone = element(var.availability_zone, count.index)
+  vpc_id                  = aws_vpc.adam-vpc.id
+  cidr_block              = element(var.cidr_block, count.index)
+  availability_zone       = element(var.availability_zone, count.index)
   map_public_ip_on_launch = true
 
   tags = var.adam_tags

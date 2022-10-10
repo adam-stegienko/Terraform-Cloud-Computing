@@ -1,6 +1,6 @@
 resource "aws_lb_target_group" "adam-target" {
   count = var.no_of_subnets > 1 ? 1 : 0
-  
+
   name     = var.alb_target["name"]
   port     = var.alb_target["port"]
   protocol = var.alb_target["protocol"]

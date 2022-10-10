@@ -7,8 +7,8 @@ resource "aws_instance" "web_server" {
   subnet_id              = element(data.aws_subnet.adam-terra-sub.*.id, count.index)
   vpc_security_group_ids = [data.aws_security_group.adam-sg.id]
   user_data              = file(var.init_file)
-  
-  tags                   = var.adam_tags
-  volume_tags            = var.adam_tags
+
+  tags        = var.adam_tags
+  volume_tags = var.adam_tags
 }
 

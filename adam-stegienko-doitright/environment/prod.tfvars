@@ -35,7 +35,7 @@ alb_listener = {
 }
 lb_listener_default_action = "forward"
 lb_security_group = {
-  name = "adam-server-sg"
+  name        = "adam-server-sg"
   description = "Security Group for Load Balancer"
 }
 ingress_one = {
