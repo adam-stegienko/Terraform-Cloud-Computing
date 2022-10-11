@@ -1,5 +1,5 @@
 module "Compute" {
-  source     = "../modules/Compute"
+  source     = "./modules/Compute"
   depends_on = [module.Network]
 
   adam_tags                  = var.adam_tags
@@ -22,7 +22,7 @@ module "Compute" {
 }
 
 module "Network" {
-  source = "../modules/Network"
+  source = "./modules/Network"
 
   adam_tags            = var.adam_tags
   no_of_subnets        = var.no_of_subnets

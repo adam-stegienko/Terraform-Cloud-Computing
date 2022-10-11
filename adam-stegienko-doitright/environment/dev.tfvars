@@ -64,3 +64,4 @@ egress_all = {
 vpc_ip_range         = "10.10.0.0/24"
 route_table_ip_range = "0.0.0.0/0"
 lb_attachment_port   = 80
+no_of_subnets        = 1
